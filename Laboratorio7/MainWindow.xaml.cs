@@ -27,5 +27,10 @@ namespace Laboratorio7
             ProductBusiness business = new ProductBusiness();
             dgProducts.ItemsSource = business.Get();
         }
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

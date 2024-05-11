@@ -44,15 +44,44 @@ namespace Data
                     }
                 }
             }
-        
-        public void Insert()
-        {
-        }
-        public void Update()
-        {
-        }
-        public void Delete()
-        {
-        }
+
+
+            public void Insert(string name, decimal price, int stock, bool active)
+            {
+                using (SqlConnection connection = new SqlConnection(connectionString))
+                {
+                    connection.Open();
+
+                    using (SqlCommand command = new SqlCommand("USP_InsertProduct", connection))
+                    {
+                        command.CommandType = CommandType.StoredProcedure;
+
+                        // Agrega parámetros
+                        command.Parameters.AddWithValue("@name", name);
+                        command.Parameters.AddWithValue("@price", price);
+                        command.Parameters.AddWithValue("@stock", stock);
+                        command.Parameters.AddWithValue("@active", active);
+
+                        command.ExecuteNonQuery();
+                    }
+                }
+            }
+            public void Delete(int productId)
+            {
+                using (SqlConnection connection = new SqlConnection(connectionString))
+                {
+                    connection.Open();
+
+                    using (SqlCommand command = new SqlCommand("USP_DeleteProduct", connection))
+                    {
+                        command.CommandType = CommandType.StoredProcedure;
+
+                        // Agrega parámetros
+                        command.Parameters.AddWithValue("@product_id", productId);
+
+                        command.ExecuteNonQuery();
+                    }
+                }
+            }
     }
 }

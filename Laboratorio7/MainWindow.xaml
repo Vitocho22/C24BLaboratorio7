@@ -7,23 +7,55 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="Auto" />
+        </Grid.ColumnDefinitions>
 
-        <StackPanel>
+        <!-- Parte izquierda: Listar Producto y Eliminar por ID -->
+        <StackPanel Grid.Column="0">
             <GroupBox Header="Productos">
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto" />
                         <RowDefinition Height="*" />
+                        <RowDefinition Height="Auto" />
                     </Grid.RowDefinitions>
 
-                    <Button Content="Listar Producto" Grid.Row="0" Click="Button_Click" />
+                    <Button Content="Listar Producto" Click="Button_Click" />
 
                     <DataGrid x:Name="dgProducts" Grid.Row="1" />
+
+                    <StackPanel Grid.Row="2" Orientation="Horizontal">
+                        <TextBox x:Name="txtDeleteId" Width="100" Margin="0,10"/>
+                        <Button Content="Eliminar por ID"  x:Name="btneliminar" Click="Button_Click_1"  Margin="10,10"/>
+                    </StackPanel>
                 </Grid>
             </GroupBox>
         </StackPanel>
-        
 
+        <!-- Parte derecha: Insertar Producto -->
+        <StackPanel Grid.Column="1">
+            <StackPanel>
+                <Label Content="Nombre:" />
+                <TextBox x:Name="txtName" Width="100" Margin="0,5"/>
+            </StackPanel>
 
+            <StackPanel>
+                <Label Content="Precio:" />
+                <TextBox x:Name="txtPrice" Width="100" Margin="0,5"/>
+            </StackPanel>
+
+            <StackPanel>
+                <Label Content="Stock:" />
+                <TextBox x:Name="txtStock" Width="100" Margin="0,5"/>
+            </StackPanel>
+
+            <StackPanel>
+                <CheckBox x:Name="chkActive" Content="Activo" Margin="0,5"/>
+            </StackPanel>
+
+            <Button Content="Insertar Producto"  x:Name="btnInsertar" Click="btnInsertar_Click" Margin="0,10"/>
+        </StackPanel>
     </Grid>
 </Window>
